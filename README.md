@@ -10,10 +10,11 @@ setwd("/Users/karolinamullokand/Desktop/ECO_B2000")
 load("Household_Pulse_data_ph4c2.RData")
 ```
 
+__Sample: With a focus on indivduals in their prime working years, my objective is to better understand marriage how marriage, anxiety and income are interrelated__
+__Setting up Variables__
+__creating midpoints for income levels__
+
 ```
-# Sample: With a focus on indivduals in their prime working years, my objective is to better understand marriage how marriage, anxiety and income are interrelated
-# Setting up Variables
-# creating midpoints for income levels
 Household_Pulse_data$income_midpoint <- fct_recode(Household_Pulse_data$INCOME,
                                                    "12500" = "HH income less than $25k",
                                                    "30000" = "HH income $25k - $34.9k",
@@ -31,7 +32,7 @@ Household_Pulse_data$income_midpoint <- as.numeric(levels(Household_Pulse_data$i
 summary(Household_Pulse_data$income_midpoint )
 ```
 
-# filtering age to represent prime working years 25-55
+__filtering age to represent prime working years 25-55__
 
 ```
 Household_Pulse_data$Age <- 2024 - Household_Pulse_data$TBIRTH_YEAR
@@ -41,7 +42,7 @@ filtereddata <- Household_Pulse_data %>%
            Age >= 25 & Age <= 55)
 ```
 
-# at te confidence level of 90% I hypothesize There is a significant positive correlation between marital status and household income leading to lower levels of stress
+__at te confidence level of 90% I hypothesize There is a significant positive correlation between marital status and household income leading to lower levels of stress__
 
 ```
 #model1
@@ -53,7 +54,7 @@ t_test_result$conf.int #format(p_value, scientific = FALSE)
 summary(model)
 ```
 
-# subset in order to plot
+__subset in order to plot__
 
 ```
 NNobs <- length(filtereddata$income_midpoint)
